@@ -8,23 +8,16 @@ VREVERT = /usr/local/bin/vrevert
 MOUNTPROG = mount.wayback
 MOUNTDEST = /bin/mount.wayback
 
-FUSEDIR = fuse-1.1
-FUSEMAKE = ./configure && make
-FUSEINSTALL = make install
-FUSECLEAN = make clean
-
 INSTALL = /usr/bin/install
 INSTALLMOUNT = $(INSTALL) -o root -m 4755
 
-all: fuse
+all: wayback
 
-fuse:
-	cd $(FUSEDIR) && $(FUSEMAKE)
 
-install: fuseinstall mountinstall utilinstall
+wayback:
+	make -C src
 
-fuseinstall:
-	cd $(FUSEDIR) && $(FUSEINSTALL)
+install: mountinstall utilinstall
 
 mountinstall:
 	$(INSTALLMOUNT) $(MOUNTPROG) $(MOUNTDEST)
@@ -33,7 +26,7 @@ utilinstall: vutilsinstall vrminstall vstatinstall vextractinstall vrevertinstal
 
 vutilsinstall:
 	$(INSTALL) $(VUTILS) $(VUTILSDEST)
-	
+
 vrminstall:
 	ln -s $(VUTILSDEST) $(VRM)
 
@@ -46,8 +39,5 @@ vextractinstall:
 vrevertinstall:
 	ln -s $(VUTILSDEST) $(VREVERT)
 
-clean: fuseclean
-
-fuseclean:
-	cd $(FUSEDIR) && $(FUSECLEAN)
-	
+clean:
+	make -C src clean

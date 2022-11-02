@@ -13,10 +13,6 @@ Installing Wayback should be as easy as typing
 and then (as root)
   make install
 
-If there are errors in the make process, first try to get FUSE to install
-properly (see INSTALL in the fuse-1.1 directory). You will need a kernel source
-tree that represents your current kernel.
-
 Usage:
 ------
 

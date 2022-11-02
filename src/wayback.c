@@ -523,17 +523,17 @@ static int ver_write(const char *path, const char *buf, size_t size,
     return res;
 }
 
-static int ver_statfs(struct fuse_statfs *fst)
+static int ver_statfs(const char* path, struct statfs *fst)
 {
 	struct statfs st;
 	int rv = statfs(redirectpath, &st);
 	if (!rv) {
-		fst->block_size  = st.f_bsize;
-		fst->blocks      = st.f_blocks;
-		fst->blocks_free = st.f_bfree;
-		fst->files       = st.f_files;
-		fst->files_free  = st.f_ffree;
-		fst->namelen     = st.f_namelen;
+		fst->f_bsize  = st.f_bsize;
+		fst->f_blocks      = st.f_blocks;
+		fst->f_bfree = st.f_bfree;
+		fst->f_files       = st.f_files;
+		fst->f_ffree  = st.f_ffree;
+		fst->f_namelen     = st.f_namelen;
 	}
 	return rv;
 }

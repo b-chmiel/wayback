@@ -13,16 +13,18 @@
 	See the file COPYING.
     *
 */
+#define FUSE_USE_VERSION 21
 
 #ifndef WAYBACKFS_H
 #define WAYBACKFS_H
+
 
 #ifdef linux
 /* For pread()/pwrite() */
 #define _XOPEN_SOURCE 500
 #endif
 
-#include <fuse.h>
+#include <fuse/fuse.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -30,15 +32,9 @@
 #include <errno.h>
 #include <sys/statfs.h>
 #include <ctype.h>
-//#include <fuse.h>
-//#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <linux/types.h>
-//#include <fcntl.h>
-//#include <unistd.h>
-
-//#define DEBUG
 
 #ifdef DEBUG
 #define IFDEBUG(x) x
@@ -46,10 +42,8 @@
 #define IFDEBUG(x)
 #endif
 
-
 char** parseargs(int, char**);
 void readsettings(FILE*);
-//void ver_makecopy(char*);
 void ver_updateversion(char*, size_t, off_t, char);
 void ver_updatedirectory(int, char*, char*, struct stat*);
 char* ver_deletedpath(char*);
