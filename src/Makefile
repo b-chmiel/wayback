@@ -1,4 +1,4 @@
-CFLAGS = -Wall -g -O0 -std=gnu90 `pkg-config fuse --cflags --libs`
+CFLAGS = -Wall -g -O2 -std=gnu90 `pkg-config fuse --cflags --libs`
 OPTS = -D_FILE_OFFSET_BITS=64 -DDEBUG
 
 wayback: wayback.c waybackfsvops.c waybackfs.h

@@ -17,7 +17,10 @@ all: wayback
 wayback:
 	make -C src
 
-install: mountinstall utilinstall
+install: waybackinstall mountinstall utilinstall
+
+waybackinstall:
+	$(INSTALL) ./src/wayback /usr/local/bin/wayback
 
 mountinstall:
 	$(INSTALLMOUNT) $(MOUNTPROG) $(MOUNTDEST)
